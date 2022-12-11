@@ -1,0 +1,5 @@
+- For the final app, I wanted to add a geolocation tracker so you would have to do is click the location button
+and you would see your city's weather if they didn't feel like typing. 
+- The user is capable of typing in the location of their city and seeing the weather through Open Weather API. This include humidity, min and max temp. 
+- 
+- I added a ionic plug-in toast to give a surprise to the user, but it wouldn't display the message for some reason. 
