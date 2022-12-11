@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  
+</ion-header>
+
+<ion-content style="color: rgb(97, 97, 97);" [fullscreen]="true">
+  <div style="text-align:center;margin: 15px;">
+    <ion-label style="font-weight: 400; font-size: 1.5em;"> Weather Forecast</ion-label>
+  </div>
+  <!--Search bar-->
+  <ion-searchbar class="searchBar" [(ngModel)]="cityName" (ngModelChange)="loadData()" animated="true" placeholder="Search for City"></ion-searchbar>
+<!--ng If for when there's nothing loaded in-->
+  <div *ngIf="!loading">
+  <ion-card class="cardStyle">
+    <ion-item lines="none">
+      <p id="todayReport">Today's Report</p>
+      <ion-label id="date" slot="end">{{todayDate | date: "EEE MMM dd "}}</ion-label>
+    </ion-item>
+    <!--Main display weather -->
+    <ion-item lines="none">
+      <span id="temp">
+        {{(weatherTemp.temp - 273.15).toFixed(0)}}
+      </span>
+      <span style="font-size: 1.3em; font-weight:bold; color:#F6B844;">o</span>
+      <img slot="end" width="180px" height="180" [src]=weatherIcon>
+    </ion-item>
+<!--Location Icon/ City Name-->
+    <ion-item>
+      <ion-icon id="locationIcon" name="location"></ion-icon>
+      <span>{{cityName}}</span>
+      
+    </ion-item>
+  </ion-card>
+</div>
+  <ion-card class="cardStyle">
+    <ion-item>
+      <!--Where the humidity, max temp and min temp are-->
+      <span>Maximum Temp</span>
+      <span slot="end">{{(weatherTemp.temp_max - 273.15).toFixed(0)}}</span>
+      
+    </ion-item>
+
+    <ion-item>
+      <span>Minimum Temp</span>
+      <span slot="end">{{(weatherTemp.temp_min - 273.15).toFixed(0)}}</span>
+    </ion-item>
+    
+    <ion-item>
+      <span>Humidity</span>
+      <span slot="end">{{weatherTemp.humidity}} %</span>
+    </ion-item>
+  </ion-card>
+
+  <ion-button (click)="showHelloToast()">Click for One More Weather Update!</ion-button>
+
+  <div *ngIf="loading">
+    <span>No data</span>
+
+  </div>
+</ion-content>
